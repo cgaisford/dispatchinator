@@ -29,9 +29,8 @@
 
 import UIKit
 
-class DITaskCell: UICollectionViewCell {
+class DITaskCell: DIBaseCell {
     
-    @IBOutlet weak var countLabel: UILabel?
     @IBOutlet weak var barrierView: UIView?
 
     override func awakeFromNib() {
@@ -40,27 +39,9 @@ class DITaskCell: UICollectionViewCell {
     }
     
     func updateFromTask(task:DITask) {
-
         self.barrierView?.isHidden = !task.isBarrier
-        self.countLabel?.text = String(format: "%d", task.count)
-        switch(task.dispatchQoS) {
-            case .background:
-                self.backgroundColor = UIColor.systemPurple
-                break
-            case .utility:
-                self.backgroundColor = UIColor.systemIndigo
-                break
-            case .userInteractive:
-                self.backgroundColor = UIColor.systemOrange
-                break
-            case .userInitiated:
-                self.backgroundColor = UIColor.systemGreen
-                break
-            default:
-                self.backgroundColor = UIColor.gray
-                break
-        }
+        self.label?.text = String(format: "%d", task.count)
+        self.dispatchQoS = task.dispatchQoS
     }
-    
     
 }

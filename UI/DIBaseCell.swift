@@ -1,8 +1,8 @@
 /*
-    QueueCell.swift
+    DIBaseCell.swift
     dispatchinator
 
-    Created by Calvin Gaisford on 5/5/20.
+    Created by Calvin Gaisford on 6/5/20.
    
     MIT License
 
@@ -29,30 +29,45 @@
 
 import UIKit
 
-class QueueCell: UICollectionViewCell {
+class DIBaseCell: UICollectionViewCell {
 
-    @IBOutlet var label: UILabel?
+    @IBOutlet weak var label: UILabel?
+
+    private var internalDispatchQoS: DispatchQoS = DispatchQoS.default
 
     override func awakeFromNib() {
         super.awakeFromNib()
         self.layer.cornerRadius = 5.0
-        self.layer.borderWidth = 0.5
-        self.layer.borderColor = UIColor.darkGray.cgColor
     }
-
-    override var isSelected: Bool {
+    
+    var dispatchQoS: DispatchQoS {
         get {
-            return super.isSelected
+            return self.internalDispatchQoS
         }
         set(newValue) {
-            super.isSelected = newValue
-            if(newValue == true) {
-                self.layer.borderColor = UIColor(named: "selectedBorder")?.cgColor
-                self.layer.borderWidth = 1.5
-            } else {
-                self.layer.borderColor = UIColor.darkGray.cgColor
-                self.layer.borderWidth = 0.5
-            }
+            self.internalDispatchQoS = newValue
+            self.updateCellForQOS()
         }
     }
+
+    func updateCellForQOS() {
+        switch(dispatchQoS) {
+            case .background:
+                self.backgroundColor = UIColor.systemPurple
+                break
+            case .utility:
+                self.backgroundColor = UIColor.systemIndigo
+                break
+            case .userInteractive:
+                self.backgroundColor = UIColor.systemOrange
+                break
+            case .userInitiated:
+                self.backgroundColor = UIColor.systemGreen
+                break
+            default:
+                self.backgroundColor = UIColor.gray
+                break
+        }
+    }
+
 }

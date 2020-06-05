@@ -44,7 +44,7 @@ class DITask: NSObject {
     // on the write will protect it.  This is just an example of how to protect a variable
     // using a DispatchQueue
     private let internalQueue = DispatchQueue(label: "com.cgbits.dispatchinator.varlock", attributes: .concurrent )
-    private var internalCount: Int = Int.random(in: 2 ..< 30)
+    private var internalCount: Int = 10 //Int.random(in: 2 ..< 30)
     private var internalQualityOfService: DispatchQoS = DispatchQoS.unspecified
     private var internalIsBarrier: Bool = false
     private weak var taskQueue: DispatchQueue?
@@ -79,7 +79,8 @@ class DITask: NSObject {
             self.internalIsBarrier = true
         }
         
-        queue.async(qos: qos, flags: flags) {
+        
+        queue.async(qos: qos, flags: flags) { 
 
             switch(Thread.current.qualityOfService) {
                 case .background:
@@ -112,6 +113,102 @@ class DITask: NSObject {
     }
     
 }
+
+
+//import Foundation
+//
+//
+//// Methods on this object must be safe to call concurrently. Add any properties or methods you need.
+//class ThreadSafeDictionary<Key,  Value> {
+//  // Methods/properties/subscripts should read/write data from `innerDictionary`
+//  private var innerDictionary: [Key: Value] = [:]
+//  private var innerQueue  = DispatchQueue(label: "com.gaisford.semiphore", attributes: .conncurent )
+//
+//
+//  subscript(_ key: Key) -> Value {
+//    get {
+//      innerQueue.sync { return innerDictionay[key] }
+//    }
+//
+//    set(newValue) {
+//      innerQueue.sync(flag: .barrier) {
+//        innerDictionay[key] = newValue
+//      }
+//    }
+//
+//  }
+//}
+//
+//
+
+//// Given this expensiveTask method
+//func expensiveTask(_ data: Data) throws {
+//  // long and slow method body
+//}
+//
+//func expensiveTask2(_ data: Data) throws {}
+//func expensiveTask3(_ data: Data) throws {}
+//
+//// Implement in this async wrapper that calls expensiveTask: off of the main thread,
+//// then when it is finished, call `completion` on the main thread
+//func expensiveTaskInBackground(_ data: Data, completion: @escaping (Error?) -> Void) {
+//
+//  var myError:Error?
+//  var semiphore  = DispatchQueue(label: "com.gaisford.semiphore" )
+//  var myDispatch  = DispatchQueue(label: "com.gaisford.myqueue", attributes: .concurrent )
+//  var myDispatchGroup = DispatchGroup()
+//
+//
+//  myDispatch.async(group: myDispatchGroup) {
+//
+//    try {
+//
+//      expensiveTask(data)
+//
+//    } catch let e {
+//      semiphore.sync {
+//        myError = e
+//      }
+//    }
+//  }
+//
+//  myDispatch.async(group: myDispatchGroup) {
+//
+//    try {
+//
+//      expensiveTask2(data)
+//
+//    } catch let e {
+//      semiphore.sync {
+//        myError = e
+//      }
+//    }
+//  }
+//
+//  myDispatch.async(group: myDispatchGroup) {
+//
+//    try {
+//
+//      expensiveTask3(data)
+//
+//    } catch let e {
+//      myDispatch.sync {
+//        myError = e
+//      }
+//    }
+//  }
+//
+//
+//  myDispatchGroup.notify(queue:myDispatch) {
+//
+//    DispatchQueue.main.async {
+//      completion(error)
+//    }
+//
+//  }
+//
+//
+//}
 
 
 

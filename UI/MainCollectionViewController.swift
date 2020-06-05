@@ -76,7 +76,11 @@ class MainCollectionViewController: UICollectionViewController, DITaskDelegate {
             case 1:
                 globalTasks.append(diTask)
                 row = globalTasks.count - 1
-                diTask.startAsync(queue: DispatchQueue.global(), qos: self.dispatchQoS, flags: flags)
+                // interesting note here, the global queue does not respect the .barrier flag
+                // you can debug and get the same queue and pass the .barrier flag and it will
+                // not be used.  Not part of Apple docs
+                let globalQueue = DispatchQueue.global()
+                diTask.startAsync(queue: globalQueue, qos: self.dispatchQoS, flags: flags)
                 break
             case 2:
                 concurrentTasks.append(diTask)

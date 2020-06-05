@@ -15,8 +15,8 @@
 		3E201D0724620391006B397A /* DITask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E201D0624620391006B397A /* DITask.swift */; };
 		3E201D0924620739006B397A /* DITaskCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E201D0824620739006B397A /* DITaskCell.swift */; };
 		3E201D0B246246E9006B397A /* QoSCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E201D0A246246E9006B397A /* QoSCell.swift */; };
-		3E201D0D2462540E006B397A /* QueueCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E201D0C2462540E006B397A /* QueueCell.swift */; };
 		3E201D112462655A006B397A /* DIHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E201D102462655A006B397A /* DIHeaderView.swift */; };
+		3E336997248B04A6003395CF /* DIBaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E336996248B04A6003395CF /* DIBaseCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,8 +30,8 @@
 		3E201D0624620391006B397A /* DITask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DITask.swift; sourceTree = "<group>"; };
 		3E201D0824620739006B397A /* DITaskCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DITaskCell.swift; sourceTree = "<group>"; };
 		3E201D0A246246E9006B397A /* QoSCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QoSCell.swift; sourceTree = "<group>"; };
-		3E201D0C2462540E006B397A /* QueueCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueCell.swift; sourceTree = "<group>"; };
 		3E201D102462655A006B397A /* DIHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIHeaderView.swift; sourceTree = "<group>"; };
+		3E336996248B04A6003395CF /* DIBaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIBaseCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,9 +87,9 @@
 			isa = PBXGroup;
 			children = (
 				3E201D03246202A6006B397A /* MainCollectionViewController.swift */,
+				3E336996248B04A6003395CF /* DIBaseCell.swift */,
 				3E201D0824620739006B397A /* DITaskCell.swift */,
 				3E201D0A246246E9006B397A /* QoSCell.swift */,
-				3E201D0C2462540E006B397A /* QueueCell.swift */,
 				3E201D102462655A006B397A /* DIHeaderView.swift */,
 			);
 			path = UI;
@@ -172,7 +172,7 @@
 				3E201D0924620739006B397A /* DITaskCell.swift in Sources */,
 				3E201CF02462005E006B397A /* AppDelegate.swift in Sources */,
 				3E201D0724620391006B397A /* DITask.swift in Sources */,
-				3E201D0D2462540E006B397A /* QueueCell.swift in Sources */,
+				3E336997248B04A6003395CF /* DIBaseCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -317,6 +317,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = WZU4CANLQZ;
 				INFOPLIST_FILE = dispatchinator/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -335,6 +336,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = WZU4CANLQZ;
 				INFOPLIST_FILE = dispatchinator/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

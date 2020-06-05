@@ -29,29 +29,14 @@
 
 import UIKit
 
-class QoSCell: UICollectionViewCell {
-    
-    @IBOutlet weak var label: UILabel?
-
-    private var internalDispatchQoS: DispatchQoS = DispatchQoS.default
+class QoSCell: DIBaseCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.layer.cornerRadius = 5.0
         self.layer.borderWidth = 0.5
         self.layer.borderColor = UIColor.darkGray.cgColor
     }
 
-    var dispatchQoS: DispatchQoS {
-        get {
-            return self.internalDispatchQoS
-        }
-        set(newValue) {
-            self.internalDispatchQoS = newValue
-            self.updateFromQOS()
-        }
-    }
-    
     override var isSelected: Bool {
         get {
             return super.isSelected
@@ -68,28 +53,23 @@ class QoSCell: UICollectionViewCell {
         }
     }
     
-    private func updateFromQOS() {
-
+    override func updateCellForQOS() {
+        super.updateCellForQOS()
         switch(dispatchQoS) {
             case .background:
                 self.label?.text = "BG"
-                self.backgroundColor = UIColor.systemPurple
                 break
             case .utility:
                 self.label?.text = "UT"
-                self.backgroundColor = UIColor.systemIndigo
                 break
             case .userInteractive:
                 self.label?.text = "UI"
-                self.backgroundColor = UIColor.systemOrange
                 break
             case .userInitiated:
                 self.label?.text = "IN"
-                self.backgroundColor = UIColor.systemGreen
                 break
             default:
                 self.label?.text = "UN"
-                self.backgroundColor = UIColor.gray
                 break
         }
     }
